@@ -3,7 +3,7 @@
   
     let ipAddress = '';
     let port = '4444';
-    let webSocket;
+    export let webSocket;
     let savedIPs = [];
  
     let error = false;
@@ -35,6 +35,8 @@
         alert('Please enter an IP address.');
         return;
       }
+
+      prompt('Enter a Name');
   
       localStorage.setItem('ipAddress', ipAddress);
       loadSavedIPs();
@@ -61,7 +63,7 @@
     });
   </script>
   
-  <div class={error ?  'error' : ''}>
+  <div class={error ?  'error' : ''} id="ConnectBar">
   
     <label for="ipAddress">IP Address:</label>
     <input type="text" id="ipAddress" bind:value={ipAddress} placeholder="Enter IP address" />
@@ -81,9 +83,13 @@
       </select>
       <button on:click={() => removeFromLocalStorage(ipAddress)}>Remove from LocalStorage</button>
     {/if}
-    </div>
+  </div>
   
     <style>
+      #ConnectBar{
+        position: relative;
+        z-index: 9999;
+      }
         .error{
             background-color: #F00;
         }

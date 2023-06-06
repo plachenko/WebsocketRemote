@@ -5,6 +5,7 @@
 
   let recognition;
   let finalTranscript = '';
+  let ws;
 
   function startRecognition() {
     finalTranscript = ''; // Clear the previous transcript
@@ -12,6 +13,7 @@
   }
 
   function stopRecognition() {
+    // console.log(ws.webSocket)
     recognition.stop();
   }
 
@@ -65,7 +67,7 @@
 
 <main>
     <Capture on:pointerdown={capturePointer} />
-    <WS />
+    <WS bind:this={ws} />
 
     <p>
         <span>{finalTranscript}</span>
